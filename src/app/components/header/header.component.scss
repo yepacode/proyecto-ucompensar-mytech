@@ -1,0 +1,245 @@
+// ============================================
+// HEADER COMPONENT - Con anidación de selectores
+// ============================================
+
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/mixins';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-dropdown;
+  background: rgba(2, 6, 23, 0.95);
+  backdrop-filter: blur(10px);
+  @include transicion(all);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0);
+  border-bottom: 2px solid transparent;
+
+  // Anidación nivel 1
+  &--scrolled {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3),
+                0 4px 30px rgba(0, 240, 255, 0.2);
+    border-bottom-color: $color-primario;
+    padding: 0.5rem 0;
+  }
+
+  // Anidación de navegación
+  &__navegacion {
+    @include flex-centrado;
+    justify-content: space-between;
+    padding: $espaciado-md 0;
+    position: relative;
+  }
+
+  // Anidación del logo
+  &__logo {
+    z-index: $z-dropdown + 1;
+
+    &-enlace {
+      @include flex-centrado;
+      gap: 0.25rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $color-primario;
+      text-decoration: none;
+      text-shadow: $glow-cyan;
+      letter-spacing: 2px;
+
+      &:hover {
+        .header__logo-punto {
+          animation: pulse 0.6s ease-in-out, neonPulse 1s infinite;
+        }
+        
+        .header__logo-texto {
+          animation: glitch 0.3s;
+        }
+      }
+    }
+
+    &-texto {
+      background: linear-gradient(135deg, $color-primario, $color-secundario);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    &-punto {
+      color: $color-acento;
+      font-size: 2rem;
+      line-height: 0.8;
+      text-shadow: $glow-amarillo;
+      animation: blink 2s infinite;
+    }
+  }
+
+  // Anidación del menú
+  &__menu {
+    display: none;
+    list-style: none;
+    gap: $espaciado-lg;
+    align-items: center;
+
+    @include responsive($breakpoint-lg) {
+      display: flex;
+    }
+
+    // Menu móvil
+    &--abierto {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(0, 240, 255, 0.95) 0%, 
+        rgba(255, 0, 255, 0.95) 100%);
+      backdrop-filter: blur(20px);
+      padding: 6rem $espaciado-xl;
+      justify-content: center;
+      animation: fadeIn $transicion-normal;
+      z-index: $z-dropdown;
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+
+      .header__menu-enlace {
+        color: $color-fondo-oscuro;
+        font-size: 2rem;
+        animation: slideInGlow $transicion-lenta backwards;
+        font-weight: 900;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+
+        @for $i from 1 through 5 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.1s};
+          }
+        }
+      }
+
+      .header__boton-cta {
+        background: $color-fondo-oscuro;
+        color: $color-primario;
+        animation: bounceIn 0.6s 0.5s backwards;
+        border: 2px solid $color-fondo-oscuro;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
+        &:hover {
+          background: $color-blanco;
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    // Items del menú
+    &-item {
+      position: relative;
+    }
+
+    // Enlaces del menú
+    &-enlace {
+      color: $color-blanco;
+      font-weight: 600;
+      @include transicion(color);
+      position: relative;
+      text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+      letter-spacing: 1px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, $color-primario, $color-secundario);
+        @include transicion(width);
+        box-shadow: 0 0 10px $color-primario;
+      }
+
+      &:hover {
+        color: $color-primario;
+        text-shadow: $glow-cyan;
+        transform: translateX(5px);
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // Botón CTA del header
+  &__boton-cta {
+    padding: 0.75rem 1.5rem !important;
+    box-shadow: $glow-cyan;
+    border: 2px solid $color-primario;
+    clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+
+    &:hover {
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.8),
+                  0 0 60px rgba(0, 240, 255, 0.5);
+      animation: glitch 0.3s;
+    }
+  }
+
+  // Botón hamburguesa
+  &__menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $espaciado-xs;
+    z-index: $z-dropdown + 1;
+    @include transicion(all);
+
+    @include responsive($breakpoint-lg) {
+      display: none;
+    }
+
+    &-linea {
+      width: 25px;
+      height: 3px;
+      background: $color-primario;
+      border-radius: $radio-borde-full;
+      @include transicion(all);
+      box-shadow: 0 0 5px $color-primario;
+    }
+
+    // Estado activo del botón hamburguesa
+    &--activo {
+      .header__menu-toggle-linea {
+        &:nth-child(1) {
+          transform: rotate(45deg) translateY(8px);
+          background: $color-fondo-oscuro;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg) translateY(-8px);
+          background: $color-fondo-oscuro;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+
+    &:hover {
+      .header__menu-toggle-linea {
+        background: $color-secundario;
+        box-shadow: $glow-magenta;
+      }
+    }
+  }
+}

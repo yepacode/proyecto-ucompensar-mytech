@@ -1,0 +1,83 @@
+// ============================================
+// MIXINS SASS con Interpolación
+// ============================================
+
+@import 'variables';
+
+// Mixin con interpolación #1 - Para media queries responsive
+@mixin responsive($breakpoint) {
+  @media (min-width: #{$breakpoint}) {
+    @content;
+  }
+}
+
+// Mixin con interpolación #2 - Para propiedades dinámicas
+@mixin propiedad-dinamica($propiedad, $valor) {
+  #{$propiedad}: $valor;
+}
+
+// Mixin para flexbox centrado
+@mixin flex-centrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Mixin para transiciones suaves
+@mixin transicion($propiedad: all) {
+  transition: $propiedad $transicion-normal;
+}
+
+// Mixin para sombras con hover
+@mixin sombra-hover {
+  box-shadow: $sombra-md;
+  transition: box-shadow $transicion-normal, transform $transicion-normal;
+  
+  &:hover {
+    box-shadow: $sombra-xl;
+    transform: translateY(-4px);
+  }
+}
+
+// Mixin para gradientes
+@mixin gradiente($direccion, $color1, $color2) {
+  background: linear-gradient($direccion, $color1, $color2);
+}
+
+// Mixin para botones
+@mixin boton-base {
+  padding: $espaciado-sm $espaciado-md;
+  border-radius: $radio-borde-md;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  @include transicion(all);
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Mixin para truncar texto
+@mixin truncar-texto($lineas: 1) {
+  @if $lineas == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lineas;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Mixin para animaciones de entrada
+@mixin animacion-entrada($retraso: 0s) {
+  opacity: 0;
+  animation: fadeInUp $transicion-lenta $retraso forwards;
+}

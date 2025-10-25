@@ -1,0 +1,226 @@
+// ============================================
+// ESTILOS BASE
+// ============================================
+
+@import '../utils/variables';
+@import '../utils/mixins';
+
+// Reset básico
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: $fuente-principal;
+  color: $color-blanco;
+  background: linear-gradient(135deg, #020617 0%, #0a0e27 50%, #020617 100%);
+  background-attachment: fixed;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  
+  // Efecto de grid gaming en el fondo
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// Tipografía
+h1, h2, h3, h4, h5, h6 {
+  font-family: $fuente-secundaria;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: $espaciado-sm;
+  color: $color-blanco;
+  text-shadow: $glow-cyan;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: $tamano-h1;
+  animation: neonPulse 2s ease-in-out infinite;
+  
+  @include responsive($breakpoint-md) {
+    font-size: 4rem;
+  }
+}
+
+h2 {
+  font-size: $tamano-h2;
+  text-shadow: $glow-magenta;
+  
+  @include responsive($breakpoint-md) {
+    font-size: 3rem;
+  }
+}
+
+h3 {
+  font-size: $tamano-h3;
+  text-shadow: $glow-cyan;
+}
+
+p {
+  margin-bottom: $espaciado-sm;
+  color: $color-texto-claro;
+}
+
+a {
+  color: $color-primario;
+  text-decoration: none;
+  @include transicion(color);
+  
+  &:hover {
+    color: $color-secundario;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Utilidades comunes
+.contenedor {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $espaciado-md;
+  
+  @include responsive($breakpoint-lg) {
+    padding: 0 $espaciado-xl;
+  }
+}
+
+.seccion {
+  padding: $espaciado-xxl 0;
+  
+  @include responsive($breakpoint-md) {
+    padding: 6rem 0;
+  }
+}
+
+.texto-centrado {
+  text-align: center;
+}
+
+// Botones base GAMING
+.boton {
+  @include boton-base;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid $color-primario;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+  
+  &--primario {
+    background: $color-primario;
+    color: $color-fondo-oscuro;
+    box-shadow: $glow-cyan;
+    
+    &:hover {
+      background: lighten($color-primario, 10%);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8),
+                  0 0 40px rgba(0, 240, 255, 0.5);
+      animation: glitch 0.3s;
+    }
+  }
+  
+  &--secundario {
+    background: $color-secundario;
+    color: $color-blanco;
+    box-shadow: $glow-magenta;
+    
+    &:hover {
+      background: lighten($color-secundario, 10%);
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.8),
+                  0 0 40px rgba(255, 0, 255, 0.5);
+    }
+  }
+  
+  &--outline {
+    background: transparent;
+    border: 2px solid $color-primario;
+    color: $color-primario;
+    box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.2);
+    
+    &:hover {
+      background: $color-primario;
+      color: $color-fondo-oscuro;
+      box-shadow: $glow-cyan;
+    }
+  }
+}
+
+// Grid responsive
+.grid {
+  display: grid;
+  gap: $espaciado-md;
+  
+  &--2-columnas {
+    grid-template-columns: 1fr;
+    
+    @include responsive($breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  &--3-columnas {
+    grid-template-columns: 1fr;
+    
+    @include responsive($breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include responsive($breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  &--4-columnas {
+    grid-template-columns: 1fr;
+    
+    @include responsive($breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include responsive($breakpoint-lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}

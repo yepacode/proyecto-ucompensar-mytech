@@ -1,0 +1,72 @@
+// ============================================
+// VARIABLES SASS - GAMING EDITION 🎮
+// ============================================
+
+// Colores NEON Gaming
+$color-primario: #00f0ff;        // Cyan eléctrico
+$color-secundario: #ff00ff;      // Magenta neón
+$color-acento: #ffff00;          // Amarillo brillante
+$color-exito: #00ff88;           // Verde neón
+$color-texto-oscuro: #0a0e27;
+
+// Colores adicionales GAMING
+$color-texto-claro: #a0aec0;
+$color-fondo-claro: #0f172a;
+$color-fondo-oscuro: #020617;
+$color-blanco: #ffffff;
+$color-peligro: #ff0055;
+$color-morado: #b628ff;
+
+// Efectos Neon/Glow
+$glow-cyan: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3), 0 0 30px rgba(0, 240, 255, 0.2);
+$glow-magenta: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3), 0 0 30px rgba(255, 0, 255, 0.2);
+$glow-amarillo: 0 0 10px rgba(255, 255, 0, 0.5), 0 0 20px rgba(255, 255, 0, 0.3);
+$glow-verde: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 255, 136, 0.3);
+
+// Tipografía
+$fuente-principal: 'Inter', 'Segoe UI', sans-serif;
+$fuente-secundaria: 'Poppins', sans-serif;
+
+// Tamaños de fuente
+$tamano-h1: 3.5rem;
+$tamano-h2: 2.5rem;
+$tamano-h3: 1.875rem;
+$tamano-texto: 1rem;
+$tamano-pequeno: 0.875rem;
+
+// Espaciados
+$espaciado-xs: 0.5rem;
+$espaciado-sm: 1rem;
+$espaciado-md: 1.5rem;
+$espaciado-lg: 2rem;
+$espaciado-xl: 3rem;
+$espaciado-xxl: 5rem;
+
+// Bordes
+$radio-borde-sm: 0.375rem;
+$radio-borde-md: 0.5rem;
+$radio-borde-lg: 1rem;
+$radio-borde-full: 9999px;
+
+// Sombras
+$sombra-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$sombra-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$sombra-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+$sombra-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+// Transiciones
+$transicion-rapida: 0.15s ease-in-out;
+$transicion-normal: 0.3s ease-in-out;
+$transicion-lenta: 0.5s ease-in-out;
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Z-index
+$z-dropdown: 1000;
+$z-modal: 1050;
+$z-tooltip: 1100;

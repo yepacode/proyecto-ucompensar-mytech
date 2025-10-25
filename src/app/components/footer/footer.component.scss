@@ -1,0 +1,203 @@
+// ============================================
+// FOOTER COMPONENT
+// ============================================
+
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/mixins';
+
+.footer {
+  background: $color-fondo-oscuro;
+  color: rgba(255, 255, 255, 0.8);
+  padding: $espaciado-xxl 0 $espaciado-lg;
+
+  // Contenido principal
+  &__contenido {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $espaciado-xl;
+    margin-bottom: $espaciado-xl;
+    padding-bottom: $espaciado-xl;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    @include responsive($breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include responsive($breakpoint-lg) {
+      grid-template-columns: 2fr repeat(3, 1fr);
+    }
+  }
+
+  // Secciones
+  &__seccion {
+    &:first-child {
+      @include responsive($breakpoint-lg) {
+        padding-right: $espaciado-xl;
+      }
+    }
+  }
+
+  // Logo
+  &__logo {
+    @include flex-centrado;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: $espaciado-md;
+
+    &-texto {
+      background: linear-gradient(135deg, $color-primario, $color-secundario);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    &-punto {
+      color: $color-acento;
+      font-size: 2rem;
+      line-height: 0.8;
+    }
+  }
+
+  &__descripcion {
+    line-height: 1.6;
+    margin-bottom: $espaciado-md;
+  }
+
+  // Redes sociales
+  &__redes {
+    display: flex;
+    gap: $espaciado-sm;
+  }
+
+  &__red {
+    width: 40px;
+    height: 40px;
+    @include flex-centrado;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radio-borde-md;
+    color: rgba(255, 255, 255, 0.6);
+    @include transicion(all);
+
+    &:hover {
+      background: $color-primario;
+      color: $color-blanco;
+      transform: translateY(-4px);
+    }
+  }
+
+  // Títulos
+  &__titulo {
+    font-size: 1.125rem;
+    color: $color-blanco;
+    margin-bottom: $espaciado-md;
+    font-weight: 600;
+  }
+
+  // Lista de enlaces
+  &__lista {
+    list-style: none;
+
+    li {
+      margin-bottom: $espaciado-xs;
+
+      a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        @include transicion(color);
+        font-size: 0.95rem;
+
+        &:hover {
+          color: $color-primario;
+          padding-left: 4px;
+        }
+      }
+    }
+  }
+
+  // Newsletter
+  &__newsletter {
+    &-texto {
+      line-height: 1.6;
+      margin-bottom: $espaciado-md;
+      font-size: 0.95rem;
+    }
+
+    &-form {
+      display: flex;
+      gap: $espaciado-xs;
+    }
+
+    &-input {
+      flex: 1;
+      padding: $espaciado-sm $espaciado-md;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: $radio-borde-md;
+      color: $color-blanco;
+      @include transicion(all);
+
+      &:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.08);
+        border-color: $color-primario;
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    &-boton {
+      padding: $espaciado-sm;
+      background: $color-primario;
+      border: none;
+      border-radius: $radio-borde-md;
+      color: $color-blanco;
+      cursor: pointer;
+      @include transicion(all);
+      @include flex-centrado;
+
+      &:hover {
+        background: darken($color-primario, 10%);
+        transform: translateX(2px);
+      }
+    }
+  }
+
+  // Bottom
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: $espaciado-md;
+    align-items: center;
+    padding-top: $espaciado-lg;
+
+    @include responsive($breakpoint-md) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__copyright {
+    font-size: $tamano-pequeno;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &__links {
+    display: flex;
+    gap: $espaciado-md;
+
+    a {
+      font-size: $tamano-pequeno;
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      @include transicion(color);
+
+      &:hover {
+        color: $color-primario;
+      }
+    }
+  }
+}

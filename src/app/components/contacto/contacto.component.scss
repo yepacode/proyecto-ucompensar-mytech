@@ -1,0 +1,187 @@
+// ============================================
+// CONTACTO COMPONENT
+// ============================================
+
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/mixins';
+
+.contacto {
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $espaciado-xxl;
+
+    @include responsive($breakpoint-lg) {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+    }
+  }
+
+  // Información
+  &__info {
+    animation: fadeInUp $transicion-lenta 0.2s backwards;
+  }
+
+  &__etiqueta {
+    display: inline-block;
+    padding: $espaciado-xs $espaciado-md;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(16, 185, 129, 0.1));
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: $radio-borde-full;
+    color: $color-acento;
+    font-size: $tamano-pequeno;
+    font-weight: 600;
+    margin-bottom: $espaciado-md;
+  }
+
+  &__titulo {
+    margin-bottom: $espaciado-md;
+    color: $color-texto-oscuro;
+  }
+
+  &__descripcion {
+    font-size: 1.125rem;
+    color: $color-texto-claro;
+    margin-bottom: $espaciado-xl;
+    line-height: 1.6;
+  }
+
+  // Items de contacto
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: $espaciado-md;
+    margin-bottom: $espaciado-xl;
+  }
+
+  &__item {
+    display: flex;
+    gap: $espaciado-md;
+    padding: $espaciado-md;
+    background: $color-blanco;
+    border-radius: $radio-borde-md;
+    box-shadow: $sombra-sm;
+    @include transicion(all);
+
+    &:hover {
+      box-shadow: $sombra-md;
+      transform: translateX(8px);
+    }
+
+    &-icono {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      @include flex-centrado;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(99, 102, 241, 0.1));
+      border-radius: $radio-borde-md;
+      color: $color-primario;
+    }
+
+    &-titulo {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: $color-texto-claro;
+      margin-bottom: $espaciado-xs;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    &-texto {
+      font-size: 1rem;
+      color: $color-texto-oscuro;
+      font-weight: 500;
+    }
+  }
+
+  // Redes sociales
+  &__redes {
+    display: flex;
+    gap: $espaciado-sm;
+  }
+
+  &__red {
+    width: 48px;
+    height: 48px;
+    @include flex-centrado;
+    background: $color-fondo-claro;
+    border-radius: $radio-borde-md;
+    color: $color-texto-claro;
+    @include transicion(all);
+
+    &:hover {
+      background: $color-primario;
+      color: $color-blanco;
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  // Formulario
+  &__formulario {
+    background: $color-blanco;
+    padding: $espaciado-xl;
+    border-radius: $radio-borde-lg;
+    box-shadow: $sombra-lg;
+    animation: fadeInUp $transicion-lenta 0.4s backwards;
+  }
+
+  &__form-grupo {
+    margin-bottom: $espaciado-md;
+  }
+
+  &__form-label {
+    display: block;
+    font-weight: 600;
+    color: $color-texto-oscuro;
+    margin-bottom: $espaciado-xs;
+    font-size: $tamano-pequeno;
+  }
+
+  &__form-input,
+  &__form-textarea {
+    width: 100%;
+    padding: $espaciado-sm $espaciado-md;
+    border: 2px solid $color-fondo-claro;
+    border-radius: $radio-borde-md;
+    font-family: $fuente-principal;
+    font-size: $tamano-texto;
+    color: $color-texto-oscuro;
+    @include transicion(all);
+
+    &:focus {
+      outline: none;
+      border-color: $color-primario;
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    }
+
+    &::placeholder {
+      color: $color-texto-claro;
+    }
+  }
+
+  &__form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  &__form-boton {
+    width: 100%;
+    padding: $espaciado-md !important;
+    font-size: 1.05rem;
+    @include flex-centrado;
+    gap: $espaciado-xs;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+    }
+  }
+}

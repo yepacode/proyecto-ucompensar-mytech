@@ -1,0 +1,46 @@
+<section class="portafolio seccion" id="portafolio">
+  <div class="contenedor">
+    <div class="portafolio__encabezado texto-centrado">
+      <span class="portafolio__etiqueta">🎨 Portafolio</span>
+      <h2 class="portafolio__titulo">Proyectos que hablan por nosotros</h2>
+      <p class="portafolio__descripcion">
+        Descubre algunos de los proyectos exitosos que hemos desarrollado
+      </p>
+    </div>
+
+    <div class="grid grid--2-columnas">
+      <div class="portafolio__proyecto" 
+           *ngFor="let proyecto of proyectos; let i = index"
+           [style.animation-delay.s]="i * 0.15">
+        <div class="portafolio__proyecto-imagen">
+          <div class="portafolio__proyecto-overlay">
+            <a href="#" class="portafolio__proyecto-enlace">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="white" stroke-width="2"/>
+                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke="white" stroke-width="2"/>
+              </svg>
+              Ver proyecto
+            </a>
+          </div>
+          <div class="portafolio__proyecto-placeholder" [style.background]="proyecto.colorFondo">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+              <path [attr.d]="proyecto.icono" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="portafolio__proyecto-contenido">
+          <span class="portafolio__proyecto-categoria">{{ proyecto.categoria }}</span>
+          <h3 class="portafolio__proyecto-titulo">{{ proyecto.titulo }}</h3>
+          <p class="portafolio__proyecto-descripcion">{{ proyecto.descripcion }}</p>
+
+          <div class="portafolio__proyecto-tecnologias">
+            <span class="portafolio__tech-tag" *ngFor="let tech of proyecto.tecnologias">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

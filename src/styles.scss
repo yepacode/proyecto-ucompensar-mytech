@@ -1,0 +1,15 @@
+// ============================================
+// ESTILOS PRINCIPALES - MyTech Solutions
+// ============================================
+
+// Importar utilidades (Variables y Mixins)
+@import 'styles/utils/variables';
+@import 'styles/utils/mixins';
+
+// Importar estilos base
+@import 'styles/base/base';
+@import 'styles/base/animations';
+
+// Fuentes de Google
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+

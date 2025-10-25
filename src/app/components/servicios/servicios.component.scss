@@ -1,0 +1,216 @@
+// ============================================
+// SERVICIOS COMPONENT
+// ============================================
+
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/mixins';
+
+.servicios {
+  background: linear-gradient(180deg, $color-fondo-oscuro 0%, #0a0e27 100%);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $color-primario, transparent);
+    box-shadow: 0 0 20px $color-primario;
+  }
+
+  // Encabezado
+  &__encabezado {
+    max-width: 800px;
+    margin: 0 auto $espaciado-xxl;
+    animation: fadeInUp $transicion-lenta 0.2s backwards;
+  }
+
+  &__etiqueta {
+    display: inline-block;
+    padding: $espaciado-xs $espaciado-md;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(99, 102, 241, 0.1));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: $radio-borde-full;
+    color: $color-primario;
+    font-size: $tamano-pequeno;
+    font-weight: 600;
+    margin-bottom: $espaciado-md;
+  }
+
+  &__titulo {
+    margin-bottom: $espaciado-md;
+    color: $color-texto-oscuro;
+  }
+
+  &__descripcion {
+    font-size: 1.125rem;
+    color: $color-texto-claro;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  // Tarjetas de servicio
+  &__tarjeta {
+    background: rgba(10, 14, 39, 0.8);
+    padding: $espaciado-xl;
+    border-radius: 0;
+    @include transicion(all);
+    animation: fadeInUp $transicion-lenta backwards;
+    border: 2px solid rgba(0, 240, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+      @include transicion(left);
+    }
+
+    &:hover {
+      border-color: $color-primario;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4),
+                  inset 0 0 30px rgba(0, 240, 255, 0.1);
+      transform: translateY(-8px);
+      
+      &::before {
+        left: 100%;
+      }
+
+      .servicios__tarjeta-icono {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: $glow-cyan;
+      }
+
+      .servicios__tarjeta-enlace {
+        color: $color-primario;
+        text-shadow: $glow-cyan;
+
+        svg {
+          transform: translateX(8px);
+        }
+      }
+    }
+
+    &-icono {
+      width: 64px;
+      height: 64px;
+      border-radius: $radio-borde-md;
+      @include flex-centrado;
+      margin-bottom: $espaciado-md;
+      @include transicion(transform);
+
+      svg {
+        width: 32px;
+        height: 32px;
+        color: $color-primario;
+      }
+    }
+
+    &-titulo {
+      font-size: 1.5rem;
+      color: $color-blanco;
+      margin-bottom: $espaciado-sm;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      letter-spacing: 1px;
+    }
+
+    &-descripcion {
+      color: $color-texto-claro;
+      margin-bottom: $espaciado-md;
+      line-height: 1.6;
+    }
+
+    &-lista {
+      list-style: none;
+      margin-bottom: $espaciado-lg;
+
+      li {
+        @include flex-centrado;
+        justify-content: flex-start;
+        gap: $espaciado-xs;
+        color: $color-texto-claro;
+        font-size: $tamano-pequeno;
+        margin-bottom: $espaciado-xs;
+
+        svg {
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    &-enlace {
+      @include flex-centrado;
+      justify-content: flex-start;
+      gap: $espaciado-xs;
+      color: $color-texto-claro;
+      font-weight: 600;
+      text-decoration: none;
+      @include transicion(all);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+
+      svg {
+        @include transicion(transform);
+      }
+    }
+  }
+
+  // Tecnologías
+  &__tecnologias {
+    margin-top: $espaciado-xxl;
+    padding-top: $espaciado-xxl;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeInUp $transicion-lenta 0.6s backwards;
+
+    &-titulo {
+      font-size: 1.5rem;
+      color: $color-texto-oscuro;
+      margin-bottom: $espaciado-xl;
+    }
+
+    &-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $espaciado-md;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__tech-badge {
+    @include flex-centrado;
+    gap: $espaciado-xs;
+    padding: $espaciado-sm $espaciado-md;
+    background: $color-blanco;
+    border-radius: $radio-borde-md;
+    box-shadow: $sombra-sm;
+    @include transicion(all);
+    animation: bounceIn $transicion-lenta backwards;
+
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{0.6 + ($i * 0.05)}s;
+      }
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $sombra-md;
+    }
+  }
+
+  &__tech-logo {
+    width: 24px;
+    height: 24px;
+  }
+}

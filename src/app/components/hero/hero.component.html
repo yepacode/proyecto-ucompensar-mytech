@@ -1,0 +1,93 @@
+<section class="hero" id="inicio">
+  <div class="hero__fondo-animado">
+    <div class="hero__particula" *ngFor="let particula of particulas" 
+         [style.left.%]="particula.x"
+         [style.animation-delay.s]="particula.delay"
+         [style.animation-duration.s]="particula.duration">
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <div class="hero__contenido">
+      <div class="hero__texto">
+        <span class="hero__etiqueta">🚀 Innovación Digital</span>
+        
+        <h1 class="hero__titulo">
+          Transforma tu negocio con 
+          <span class="hero__titulo-gradiente">soluciones web</span> 
+          a medida
+        </h1>
+        
+        <p class="hero__descripcion">
+          Creamos plataformas digitales que generan resultados reales: más ventas, 
+          nuevos clientes y procesos automatizados. Sin plantillas, sin complicaciones, 
+          100% adaptado a tu negocio.
+        </p>
+        
+        <div class="hero__botones">
+          <a href="#contacto" class="boton boton--primario hero__boton">
+            Comenzar Proyecto
+            <svg class="hero__boton-icono" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          
+          <a href="#portafolio" class="boton boton--outline hero__boton">
+            Ver Portafolio
+          </a>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="hero__estadisticas">
+          <div class="hero__estadistica" *ngFor="let stat of estadisticas">
+            <div class="hero__estadistica-numero">{{ stat.numero }}</div>
+            <div class="hero__estadistica-texto">{{ stat.texto }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__imagen">
+        <div class="hero__imagen-contenedor">
+          <svg class="hero__svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- Laptop -->
+            <rect x="100" y="150" width="300" height="180" rx="10" fill="#6366f1" opacity="0.1"/>
+            <rect x="110" y="160" width="280" height="150" rx="5" fill="#111827"/>
+            <rect x="120" y="170" width="260" height="120" fill="#00d4ff" opacity="0.2"/>
+            
+            <!-- Código animado -->
+            <g class="hero__codigo-linea" opacity="0.6">
+              <rect x="130" y="180" width="80" height="4" rx="2" fill="#00d4ff"/>
+              <rect x="130" y="195" width="120" height="4" rx="2" fill="#6366f1"/>
+              <rect x="130" y="210" width="100" height="4" rx="2" fill="#f59e0b"/>
+              <rect x="130" y="225" width="90" height="4" rx="2" fill="#10b981"/>
+            </g>
+            
+            <!-- Base del laptop -->
+            <rect x="90" y="330" width="320" height="10" rx="5" fill="#6366f1" opacity="0.2"/>
+            
+            <!-- Elementos flotantes -->
+            <circle class="hero__elemento-flotante" cx="380" cy="100" r="20" fill="#00d4ff" opacity="0.3"/>
+            <circle class="hero__elemento-flotante" cx="120" cy="380" r="15" fill="#f59e0b" opacity="0.3"/>
+            <rect class="hero__elemento-flotante" x="350" y="350" width="30" height="30" rx="5" fill="#10b981" opacity="0.3"/>
+          </svg>
+        </div>
+        
+        <!-- Badge flotante -->
+        <div class="hero__badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#10b981" stroke-width="2"/>
+          </svg>
+          <span>Proyectos Exitosos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <a href="#servicios" class="hero__scroll">
+    <span class="hero__scroll-texto">Descubre más</span>
+    <svg class="hero__scroll-icono" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </a>
+</section>

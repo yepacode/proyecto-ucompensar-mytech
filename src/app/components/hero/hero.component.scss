@@ -1,0 +1,395 @@
+// ============================================
+// HERO COMPONENT - Sección principal
+// ============================================
+
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/mixins';
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  @include flex-centrado;
+  padding-top: 5rem;
+  overflow: hidden;
+  background: $color-fondo-oscuro;
+  
+  // Fondo con efecto de matrix/gaming
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+    z-index: 0;
+  }
+  
+  // Scanline effect
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(0, 240, 255, 0.8), 
+      transparent);
+    animation: scanline 4s linear infinite;
+    z-index: 1;
+  }
+
+  // Fondo animado con partículas
+  &__fondo-animado {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  &__particula {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: $color-primario;
+    border-radius: $radio-borde-full;
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+    box-shadow: $glow-cyan;
+
+    &:nth-child(even) {
+      background: $color-secundario;
+      box-shadow: $glow-magenta;
+    }
+
+    &:nth-child(3n) {
+      background: $color-acento;
+      box-shadow: $glow-amarillo;
+      width: 4px;
+      height: 4px;
+    }
+    
+    &:nth-child(5n) {
+      background: $color-exito;
+      box-shadow: $glow-verde;
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  // Contenido principal
+  &__contenido {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $espaciado-xxl;
+    align-items: center;
+
+    @include responsive($breakpoint-lg) {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  // Texto del hero
+  &__texto {
+    animation: fadeInUp $transicion-lenta 0.2s backwards;
+  }
+
+  &__etiqueta {
+    display: inline-block;
+    padding: $espaciado-xs $espaciado-md;
+    background: rgba(0, 240, 255, 0.1);
+    border: 2px solid $color-primario;
+    border-radius: 0;
+    color: $color-primario;
+    font-size: $tamano-pequeno;
+    font-weight: 700;
+    margin-bottom: $espaciado-md;
+    @include transicion(all);
+    box-shadow: $glow-cyan, inset 0 0 10px rgba(0, 240, 255, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, $color-primario, $color-secundario);
+      z-index: -1;
+      opacity: 0;
+      @include transicion(opacity);
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6),
+                  0 0 40px rgba(0, 240, 255, 0.4),
+                  inset 0 0 20px rgba(0, 240, 255, 0.2);
+      
+      &::before {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  &__titulo {
+    font-size: 2.5rem;
+    margin-bottom: $espaciado-md;
+    line-height: 1.2;
+    color: $color-blanco;
+    text-shadow: $glow-cyan;
+    position: relative;
+
+    @include responsive($breakpoint-md) {
+      font-size: 3.5rem;
+    }
+
+    @include responsive($breakpoint-lg) {
+      font-size: 4.5rem;
+    }
+
+    &-gradiente {
+      background: linear-gradient(135deg, 
+        $color-primario 0%, 
+        $color-secundario 50%,
+        $color-acento 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+      animation: gradientShift 3s ease infinite, neonPulse 2s ease-in-out infinite;
+      background-size: 200% 200%;
+      font-weight: 900;
+      letter-spacing: 3px;
+      position: relative;
+      
+      &::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        z-index: -1;
+        background: $color-secundario;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.5;
+        animation: glitch 0.3s infinite;
+      }
+    }
+  }
+
+  &__descripcion {
+    font-size: 1.125rem;
+    color: $color-texto-claro;
+    margin-bottom: $espaciado-xl;
+    line-height: 1.8;
+    max-width: 600px;
+  }
+
+  // Botones
+  &__botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $espaciado-md;
+    margin-bottom: $espaciado-xl;
+  }
+
+  &__boton {
+    @include flex-centrado;
+    gap: $espaciado-xs;
+    padding: 1rem 2rem !important;
+    font-size: 1.05rem;
+    box-shadow: $glow-cyan;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid $color-primario;
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+      transform: translate(-50%, -50%);
+      @include transicion(all);
+      border-radius: 50%;
+    }
+
+    &:hover {
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.8),
+                  0 0 60px rgba(0, 240, 255, 0.5);
+      animation: glowBorder 1s infinite;
+      
+      &::before {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    &-icono {
+      @include transicion(transform);
+    }
+
+    &:hover &-icono {
+      transform: translateX(6px);
+      filter: drop-shadow(0 0 5px $color-primario);
+    }
+  }
+
+  // Estadísticas
+  &__estadisticas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $espaciado-md;
+    padding-top: $espaciado-xl;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+    @include responsive($breakpoint-sm) {
+      gap: $espaciado-xl;
+    }
+  }
+
+  &__estadistica {
+    text-align: center;
+    animation: bounceIn $transicion-lenta backwards;
+
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{0.3 + ($i * 0.1)}s;
+      }
+    }
+
+    &-numero {
+      font-size: 2rem;
+      font-weight: 700;
+      color: $color-primario;
+      margin-bottom: $espaciado-xs;
+      font-family: $fuente-secundaria;
+
+      @include responsive($breakpoint-md) {
+        font-size: 2.5rem;
+      }
+    }
+
+    &-texto {
+      font-size: $tamano-pequeno;
+      color: $color-texto-claro;
+      font-weight: 500;
+    }
+  }
+
+  // Imagen/Ilustración
+  &__imagen {
+    position: relative;
+    animation: fadeInUp $transicion-lenta 0.4s backwards;
+
+    &-contenedor {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+  }
+
+  &__svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+  }
+
+  &__codigo-linea {
+    rect {
+      animation: shimmer 2s ease-in-out infinite;
+
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.2}s;
+        }
+      }
+    }
+  }
+
+  &__elemento-flotante {
+    animation: float 4s ease-in-out infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.5s;
+      animation-duration: 5s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 1s;
+      animation-duration: 6s;
+    }
+  }
+
+  // Badge flotante
+  &__badge {
+    position: absolute;
+    top: 10%;
+    right: -10%;
+    background: $color-blanco;
+    padding: $espaciado-sm $espaciado-md;
+    border-radius: $radio-borde-lg;
+    box-shadow: $sombra-xl;
+    @include flex-centrado;
+    gap: $espaciado-xs;
+    font-size: $tamano-pequeno;
+    font-weight: 600;
+    color: $color-texto-oscuro;
+    animation: bounceIn 0.8s 1s backwards;
+
+    @include responsive($breakpoint-lg) {
+      right: 5%;
+    }
+
+    svg {
+      animation: pulse 2s ease-in-out infinite;
+    }
+  }
+
+  // Scroll indicator
+  &__scroll {
+    position: absolute;
+    bottom: $espaciado-xl;
+    left: 50%;
+    transform: translateX(-50%);
+    @include flex-centrado;
+    flex-direction: column;
+    gap: $espaciado-xs;
+    color: $color-texto-claro;
+    text-decoration: none;
+    @include transicion(all);
+    animation: float 3s ease-in-out infinite;
+
+    &:hover {
+      color: $color-primario;
+      transform: translateX(-50%) translateY(-5px);
+    }
+
+    &-texto {
+      font-size: $tamano-pequeno;
+      font-weight: 500;
+    }
+
+    &-icono {
+      animation: float 2s ease-in-out infinite;
+    }
+  }
+}

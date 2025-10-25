@@ -1,0 +1,51 @@
+<section class="servicios seccion" id="servicios">
+  <div class="contenedor">
+    <div class="servicios__encabezado texto-centrado">
+      <span class="servicios__etiqueta">✨ Nuestros Servicios</span>
+      <h2 class="servicios__titulo">Soluciones que impulsan tu crecimiento</h2>
+      <p class="servicios__descripcion">
+        Ofrecemos servicios integrales de desarrollo web adaptados a las necesidades de tu negocio
+      </p>
+    </div>
+
+    <div class="grid grid--3-columnas">
+      <div class="servicios__tarjeta" 
+           *ngFor="let servicio of servicios; let i = index"
+           [style.animation-delay.s]="i * 0.1">
+        <div class="servicios__tarjeta-icono" [style.background]="servicio.colorFondo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" [innerHTML]="servicio.icono"></svg>
+        </div>
+        
+        <h3 class="servicios__tarjeta-titulo">{{ servicio.titulo }}</h3>
+        <p class="servicios__tarjeta-descripcion">{{ servicio.descripcion }}</p>
+        
+        <ul class="servicios__tarjeta-lista">
+          <li *ngFor="let caracteristica of servicio.caracteristicas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M5 13l4 4L19 7" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            {{ caracteristica }}
+          </li>
+        </ul>
+
+        <a href="#contacto" class="servicios__tarjeta-enlace">
+          Solicitar servicio
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Tecnologías -->
+    <div class="servicios__tecnologias">
+      <h3 class="servicios__tecnologias-titulo">Tecnologías que dominamos</h3>
+      <div class="servicios__tecnologias-grid">
+        <div class="servicios__tech-badge" *ngFor="let tech of tecnologias">
+          <img [src]="tech.logo" [alt]="tech.nombre" class="servicios__tech-logo">
+          <span>{{ tech.nombre }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
