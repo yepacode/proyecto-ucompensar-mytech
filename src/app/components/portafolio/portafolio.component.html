@@ -12,6 +12,7 @@
       <div class="portafolio__proyecto" 
            *ngFor="let proyecto of proyectos; let i = index"
            [style.animation-delay.s]="i * 0.15">
+        
         <div class="portafolio__proyecto-imagen">
           <div class="portafolio__proyecto-overlay">
             <a href="#" class="portafolio__proyecto-enlace">
@@ -22,11 +23,10 @@
               Ver proyecto
             </a>
           </div>
-          <div class="portafolio__proyecto-placeholder" [style.background]="proyecto.colorFondo">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
-              <path [attr.d]="proyecto.icono" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
-            </svg>
-          </div>
+          <img 
+            [src]="proyecto.imagen" 
+            [alt]="proyecto.titulo"
+            class="portafolio__proyecto-img">
         </div>
 
         <div class="portafolio__proyecto-contenido">
@@ -40,6 +40,7 @@
             </span>
           </div>
         </div>
+        
       </div>
     </div>
   </div>

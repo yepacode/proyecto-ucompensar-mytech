@@ -6,6 +6,7 @@
 @import '../../../styles/utils/mixins';
 
 .portafolio {
+
   // Encabezado
   &__encabezado {
     max-width: 800px;
@@ -103,6 +104,13 @@
       svg {
         opacity: 0.3;
       }
+    }
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      @include transicion(transform);
     }
 
     &-contenido {
