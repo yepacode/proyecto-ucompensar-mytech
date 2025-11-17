@@ -12,13 +12,20 @@
       <!-- Menu Desktop -->
       <ul class="header__menu" [class.header__menu--abierto]="menuAbierto">
         <li class="header__menu-item">
-          <a href="#inicio" class="header__menu-enlace" (click)="cerrarMenu()">Inicio</a>
+          <a routerLink="/" class="header__menu-link" routerLinkActive="activo"
+            [routerLinkActiveOptions]="{exact: true}">
+            Inicio
+          </a>
         </li>
         <li class="header__menu-item">
-          <a href="#servicios" class="header__menu-enlace" (click)="cerrarMenu()">Servicios</a>
+          <a routerLink="/contacto" class="header__menu-link" routerLinkActive="activo">
+            Contacto
+          </a>
         </li>
         <li class="header__menu-item">
-          <a href="#portafolio" class="header__menu-enlace" (click)="cerrarMenu()">Portafolio</a>
+          <a routerLink="/portafolio" class="header__menu-link" routerLinkActive="activo">
+            Portafolio
+          </a>
         </li>
         <li class="header__menu-item">
           <a href="#testimonios" class="header__menu-enlace" (click)="cerrarMenu()">Testimonios</a>
@@ -31,10 +38,7 @@
       </ul>
 
       <!-- Botón hamburguesa móvil -->
-      <button 
-        class="header__menu-toggle" 
-        [class.header__menu-toggle--activo]="menuAbierto"
-        (click)="toggleMenu()"
+      <button class="header__menu-toggle" [class.header__menu-toggle--activo]="menuAbierto" (click)="toggleMenu()"
         aria-label="Toggle menu">
         <span class="header__menu-toggle-linea"></span>
         <span class="header__menu-toggle-linea"></span>
