@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EstadisticaService } from '../../services/estadistica.service';
 
 interface Particula {
   x: number;
@@ -8,6 +9,7 @@ interface Particula {
 }
 
 interface Estadistica {
+  id?: number;
   numero: string;
   texto: string;
 }
@@ -21,15 +23,26 @@ interface Estadistica {
 })
 export class HeroComponent implements OnInit {
   particulas: Particula[] = [];
-  
-  estadisticas: Estadistica[] = [
-    { numero: '7+', texto: 'Países' },
-    { numero: '50+', texto: 'Proyectos' },
-    { numero: '98%', texto: 'Satisfacción' }
-  ];
+  estadisticas: Estadistica[] = [];
+
+  constructor(private estadisticaService: EstadisticaService) {}
 
   ngOnInit() {
     this.generarParticulas();
+    this.cargarEstadisticas();
+  }
+
+  cargarEstadisticas(): void {
+    this.estadisticaService.obtenerEstadisticas().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.estadisticas = response.data;
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar estadísticas:', error);
+      }
+    });
   }
 
   generarParticulas(): void {

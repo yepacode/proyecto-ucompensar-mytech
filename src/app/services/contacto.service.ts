@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 // Interface para el contacto
 export interface Contacto {
@@ -22,7 +23,7 @@ export interface RespuestaAPI {
 })
 export class ContactoService {
   // URL del backend
-  private apiUrl = 'http://localhost:3000/api/contactos';
+  private apiUrl = `${environment.apiUrl}/contactos`;
 
   constructor(private http: HttpClient) { }
 
