@@ -325,7 +325,6 @@ u.compensar-mytech/
 ├── diagrama-base-datos.html             # MER interactivo (descarga PDF)
 ├── diagrama-base-datos.puml             # Diagrama en PlantUML
 ├── diagrama-base-datos.txt              # Diagrama en texto ASCII
-└── CLAUDE.md                            # Guia para asistente de codigo
 ```
 
 ---
@@ -722,8 +721,6 @@ php artisan route:list         # Ver todos los endpoints registrados
 ```
 
 ---
-
-## Autor
 
 Desarrollado para **Desarrollo de Software Web** — **UCompensar** (Compensar)
 
