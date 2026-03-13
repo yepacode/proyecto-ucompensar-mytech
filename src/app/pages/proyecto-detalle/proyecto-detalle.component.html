@@ -1,0 +1,101 @@
+<main class="detalle">
+  <div class="contenedor">
+
+    <!-- Cargando -->
+    <div class="detalle__cargando" *ngIf="cargando">
+      <div class="detalle__spinner"></div>
+      <p>Cargando proyecto...</p>
+    </div>
+
+    <!-- Error -->
+    <div class="detalle__error" *ngIf="error && !cargando">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+        <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h2>Proyecto no encontrado</h2>
+      <p>El proyecto que buscas no existe o fue eliminado</p>
+      <a routerLink="/portafolio" class="detalle__btn-volver">Volver al portafolio</a>
+    </div>
+
+    <!-- Contenido del proyecto -->
+    <div class="detalle__contenido" *ngIf="proyecto && !cargando">
+
+      <!-- Navegacion -->
+      <nav class="detalle__nav">
+        <a routerLink="/portafolio" class="detalle__breadcrumb">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Volver al portafolio
+        </a>
+      </nav>
+
+      <!-- Header del proyecto -->
+      <div class="detalle__header" [style.background]="proyecto.color_fondo">
+        <div class="detalle__header-overlay">
+          <div class="detalle__header-info">
+            <span class="detalle__categoria">{{ proyecto.categoria }}</span>
+            <h1 class="detalle__titulo">{{ proyecto.titulo }}</h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="detalle__body">
+
+        <!-- Descripcion -->
+        <div class="detalle__seccion">
+          <h2 class="detalle__seccion-titulo">Descripcion del Proyecto</h2>
+          <p class="detalle__descripcion">{{ proyecto.descripcion }}</p>
+        </div>
+
+        <!-- Tecnologias -->
+        <div class="detalle__seccion" *ngIf="proyecto.tecnologias?.length">
+          <h2 class="detalle__seccion-titulo">Tecnologias Utilizadas</h2>
+          <div class="detalle__tecnologias">
+            <span class="detalle__tech-tag" *ngFor="let tech of proyecto.tecnologias">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Info adicional -->
+        <div class="detalle__seccion">
+          <h2 class="detalle__seccion-titulo">Informacion del Proyecto</h2>
+          <div class="detalle__info-grid">
+            <div class="detalle__info-item">
+              <span class="detalle__info-label">Categoria</span>
+              <span class="detalle__info-valor">{{ proyecto.categoria }}</span>
+            </div>
+            <div class="detalle__info-item">
+              <span class="detalle__info-label">Estado</span>
+              <span class="detalle__info-valor detalle__info-valor--activo">
+                {{ proyecto.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </div>
+            <div class="detalle__info-item">
+              <span class="detalle__info-label">Orden</span>
+              <span class="detalle__info-valor">#{{ proyecto.orden }}</span>
+            </div>
+            <div class="detalle__info-item">
+              <span class="detalle__info-label">ID</span>
+              <span class="detalle__info-valor">{{ proyecto.id }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Boton volver -->
+        <div class="detalle__acciones">
+          <a routerLink="/portafolio" class="detalle__btn-volver">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Volver al portafolio
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>

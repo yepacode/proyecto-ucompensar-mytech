@@ -38,6 +38,135 @@
     margin: 0 auto;
   }
 
+  // Filtros y busqueda
+  &__filtros {
+    max-width: 900px;
+    margin: 0 auto $espaciado-xl;
+    animation: fadeInUp $transicion-lenta 0.3s backwards;
+  }
+
+  &__busqueda {
+    position: relative;
+    margin-bottom: $espaciado-md;
+
+    &-icono {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $color-texto-claro;
+      pointer-events: none;
+    }
+
+    &-input {
+      width: 100%;
+      padding: 14px 16px 14px 48px;
+      background: $color-fondo-claro;
+      border: 2px solid rgba(0, 240, 255, 0.15);
+      border-radius: $radio-borde-lg;
+      color: $color-texto-oscuro;
+      font-size: 1rem;
+      font-family: $fuente-principal;
+      @include transicion(all);
+
+      &::placeholder {
+        color: $color-texto-claro;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $color-primario;
+        box-shadow: $glow-cyan;
+        background: $color-blanco;
+      }
+    }
+  }
+
+  &__categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $espaciado-xs;
+    justify-content: center;
+  }
+
+  &__categoria-btn {
+    padding: $espaciado-xs $espaciado-md;
+    background: transparent;
+    border: 2px solid rgba(0, 240, 255, 0.2);
+    border-radius: $radio-borde-full;
+    color: $color-texto-claro;
+    font-size: $tamano-pequeno;
+    font-weight: 600;
+    font-family: $fuente-principal;
+    cursor: pointer;
+    @include transicion(all);
+
+    &:hover {
+      border-color: $color-primario;
+      color: $color-primario;
+      transform: translateY(-2px);
+    }
+
+    &--activo {
+      background: $color-primario;
+      border-color: $color-primario;
+      color: $color-texto-oscuro;
+      box-shadow: $glow-cyan;
+
+      &:hover {
+        color: $color-texto-oscuro;
+      }
+    }
+  }
+
+  &__resultados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $espaciado-sm;
+    margin-top: $espaciado-md;
+    font-size: $tamano-pequeno;
+    color: $color-texto-claro;
+  }
+
+  &__limpiar-btn {
+    padding: $espaciado-xs $espaciado-sm;
+    background: rgba(255, 0, 85, 0.1);
+    border: 1px solid rgba(255, 0, 85, 0.3);
+    border-radius: $radio-borde-sm;
+    color: $color-peligro;
+    font-size: $tamano-pequeno;
+    font-family: $fuente-principal;
+    cursor: pointer;
+    @include transicion(all);
+
+    &:hover {
+      background: rgba(255, 0, 85, 0.2);
+      transform: translateY(-1px);
+    }
+  }
+
+  &__sin-resultados {
+    text-align: center;
+    padding: $espaciado-xxl $espaciado-lg;
+    color: $color-texto-claro;
+    animation: fadeIn $transicion-lenta backwards;
+
+    svg {
+      margin-bottom: $espaciado-md;
+      opacity: 0.3;
+    }
+
+    h3 {
+      color: $color-texto-oscuro;
+      margin-bottom: $espaciado-sm;
+    }
+
+    p {
+      margin-bottom: $espaciado-lg;
+    }
+  }
+
   // Proyecto
   &__proyecto {
     background: $color-blanco;

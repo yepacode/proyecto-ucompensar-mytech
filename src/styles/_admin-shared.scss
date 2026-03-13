@@ -1,0 +1,332 @@
+@import 'utils/variables';
+@import 'utils/mixins';
+
+// ===== ADMIN SHARED STYLES =====
+
+.crud {
+  // Header
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $espaciado-lg;
+    flex-wrap: wrap;
+    gap: $espaciado-sm;
+  }
+
+  &__titulo {
+    color: $color-blanco;
+    font-size: $tamano-h3;
+    margin: 0;
+
+    span {
+      color: $color-primario;
+      font-weight: 400;
+      font-size: $tamano-texto;
+      margin-left: $espaciado-xs;
+    }
+  }
+
+  &__btn-crear {
+    @include boton-base;
+    background: linear-gradient(135deg, $color-primario, $color-secundario);
+    color: $color-fondo-oscuro;
+    font-weight: 700;
+    letter-spacing: 1px;
+    @include transicion(all);
+
+    &:hover {
+      box-shadow: $glow-cyan;
+      transform: translateY(-2px);
+    }
+  }
+
+  // Toast notification
+  &__mensaje {
+    position: fixed;
+    top: $espaciado-lg;
+    right: $espaciado-lg;
+    z-index: $z-tooltip;
+    padding: $espaciado-sm $espaciado-lg;
+    border-radius: $radio-borde-md;
+    font-size: $tamano-texto;
+    font-weight: 600;
+    animation: fadeInUp 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    gap: $espaciado-sm;
+    min-width: 280px;
+    box-shadow: $sombra-xl;
+
+    &--exito {
+      background: rgba(0, 255, 136, 0.15);
+      border: 2px solid $color-exito;
+      color: $color-exito;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+
+      &::before {
+        content: '✓';
+        font-size: 1.2rem;
+      }
+    }
+
+    &--error {
+      background: rgba(255, 0, 85, 0.15);
+      border: 2px solid $color-peligro;
+      color: $color-peligro;
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+
+      &::before {
+        content: '✗';
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  // Table
+  &__tabla-wrapper {
+    overflow-x: auto;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    border-radius: $radio-borde-md;
+  }
+
+  &__tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $tamano-pequeno;
+
+    th, td {
+      padding: 0.75rem $espaciado-sm;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.08);
+    }
+
+    th {
+      background: rgba(0, 240, 255, 0.06);
+      color: $color-primario;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    td {
+      color: $color-texto-claro;
+    }
+
+    tr:hover td {
+      background: rgba(0, 240, 255, 0.03);
+    }
+  }
+
+  &__acciones {
+    display: flex;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  &__btn-editar,
+  &__btn-eliminar {
+    @include boton-base;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: $radio-borde-sm;
+  }
+
+  &__btn-editar {
+    background: rgba(0, 240, 255, 0.15);
+    color: $color-primario;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+
+    &:hover {
+      background: rgba(0, 240, 255, 0.25);
+    }
+  }
+
+  &__btn-eliminar {
+    background: rgba(255, 0, 85, 0.15);
+    color: $color-peligro;
+    border: 1px solid rgba(255, 0, 85, 0.3);
+
+    &:hover {
+      background: rgba(255, 0, 85, 0.25);
+    }
+  }
+
+  // Modal / Form
+  &__modal {
+    position: fixed;
+    inset: 0;
+    z-index: $z-modal;
+    @include flex-centrado;
+    padding: $espaciado-md;
+  }
+
+  &__modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  &__modal-contenido {
+    position: relative;
+    background: $color-fondo-claro;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: $radio-borde-lg;
+    padding: $espaciado-lg;
+    width: 100%;
+    max-width: 550px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: $glow-cyan;
+    animation: fadeInUp 0.3s ease-out;
+  }
+
+  &__modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $espaciado-lg;
+  }
+
+  &__modal-titulo {
+    color: $color-blanco;
+    font-size: 1.3rem;
+    margin: 0;
+  }
+
+  &__modal-cerrar {
+    background: none;
+    border: none;
+    color: $color-texto-claro;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+
+    &:hover {
+      color: $color-peligro;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $espaciado-md;
+  }
+
+  &__campo {
+    display: flex;
+    flex-direction: column;
+    gap: $espaciado-xs;
+  }
+
+  &__label {
+    color: $color-texto-claro;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__input,
+  &__textarea,
+  &__select {
+    background: rgba(2, 6, 23, 0.8);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: $radio-borde-sm;
+    padding: 0.75rem $espaciado-sm;
+    color: $color-blanco;
+    font-size: $tamano-pequeno;
+    @include transicion(border-color);
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primario;
+    }
+
+    &::placeholder {
+      color: rgba(160, 174, 192, 0.4);
+    }
+  }
+
+  &__textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  &__select {
+    cursor: pointer;
+  }
+
+  &__form-acciones {
+    display: flex;
+    gap: $espaciado-sm;
+    justify-content: flex-end;
+    margin-top: $espaciado-sm;
+  }
+
+  &__btn-guardar {
+    @include boton-base;
+    background: linear-gradient(135deg, $color-primario, $color-secundario);
+    color: $color-fondo-oscuro;
+    font-weight: 700;
+
+    &:hover {
+      box-shadow: $glow-cyan;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__btn-cancelar {
+    @include boton-base;
+    background: transparent;
+    border: 1px solid rgba(160, 174, 192, 0.3);
+    color: $color-texto-claro;
+
+    &:hover {
+      border-color: $color-peligro;
+      color: $color-peligro;
+    }
+  }
+
+  // Empty state
+  &__vacio {
+    text-align: center;
+    padding: $espaciado-xl;
+    color: $color-texto-claro;
+  }
+
+  // Badge
+  &__badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: $radio-borde-full;
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    &--activo {
+      background: rgba(0, 255, 136, 0.15);
+      color: $color-exito;
+    }
+
+    &--inactivo {
+      background: rgba(255, 0, 85, 0.15);
+      color: $color-peligro;
+    }
+  }
+
+  // Truncate
+  &__truncar {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

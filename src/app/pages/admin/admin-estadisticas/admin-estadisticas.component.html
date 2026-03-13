@@ -1,0 +1,73 @@
+<div class="crud">
+  <div class="crud__header">
+    <h2 class="crud__titulo">Estadisticas <span>({{ estadisticas.length }})</span></h2>
+    <button class="crud__btn-crear" (click)="abrirCrear()">+ Crear Estadistica</button>
+  </div>
+
+  <div class="crud__mensaje" [ngClass]="{'crud__mensaje--exito': tipoMensaje==='exito', 'crud__mensaje--error': tipoMensaje==='error'}" *ngIf="mensaje">{{ mensaje }}</div>
+
+  <div class="crud__tabla-wrapper">
+    <table class="crud__tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Numero</th>
+          <th>Texto</th>
+          <th>Estado</th>
+          <th>Orden</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of estadisticas">
+          <td>{{ item.id }}</td>
+          <td>{{ item.numero }}</td>
+          <td>{{ item.texto }}</td>
+          <td><span class="crud__badge" [ngClass]="item.activo ? 'crud__badge--activo' : 'crud__badge--inactivo'">{{ item.activo ? 'Activo' : 'Inactivo' }}</span></td>
+          <td>{{ item.orden }}</td>
+          <td>
+            <div class="crud__acciones">
+              <button class="crud__btn-editar" (click)="abrirEditar(item)">Editar</button>
+              <button class="crud__btn-eliminar" (click)="eliminar(item)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="crud__vacio" *ngIf="estadisticas.length === 0">No hay estadisticas registradas</div>
+  </div>
+
+  <!-- Modal -->
+  <div class="crud__modal" *ngIf="mostrarModal">
+    <div class="crud__modal-overlay" (click)="mostrarModal = false"></div>
+    <div class="crud__modal-contenido">
+      <div class="crud__modal-header">
+        <h3 class="crud__modal-titulo">{{ editando ? 'Editar' : 'Crear' }} Estadistica</h3>
+        <button class="crud__modal-cerrar" (click)="mostrarModal = false">&times;</button>
+      </div>
+      <form class="crud__form" (ngSubmit)="guardar()">
+        <div class="crud__campo">
+          <label class="crud__label">Numero</label>
+          <input class="crud__input" [(ngModel)]="form.numero" name="numero" required placeholder="200+, 50, 99%">
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">Texto</label>
+          <input class="crud__input" [(ngModel)]="form.texto" name="texto" required placeholder="Proyectos Completados">
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">Orden</label>
+          <input class="crud__input" type="number" [(ngModel)]="form.orden" name="orden">
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">
+            <input type="checkbox" [(ngModel)]="form.activo" name="activo"> Activo
+          </label>
+        </div>
+        <div class="crud__form-acciones">
+          <button type="button" class="crud__btn-cancelar" (click)="mostrarModal = false">Cancelar</button>
+          <button type="submit" class="crud__btn-guardar" [disabled]="cargando">{{ cargando ? 'Guardando...' : 'Guardar' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

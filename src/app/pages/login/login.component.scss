@@ -1,0 +1,119 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/mixins';
+
+.login {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $color-fondo-oscuro 0%, $color-fondo-claro 100%);
+  @include flex-centrado;
+  padding: $espaciado-md;
+
+  &__contenedor {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: $radio-borde-lg;
+    padding: $espaciado-xl;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: $glow-cyan;
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $espaciado-xl;
+  }
+
+  &__logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, $color-primario, $color-secundario);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+
+    &-punto {
+      -webkit-text-fill-color: $color-acento;
+      text-shadow: $glow-amarillo;
+    }
+  }
+
+  &__subtitulo {
+    color: $color-texto-claro;
+    margin-top: $espaciado-xs;
+    font-size: $tamano-pequeno;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  &__formulario {
+    display: flex;
+    flex-direction: column;
+    gap: $espaciado-md;
+  }
+
+  &__campo {
+    display: flex;
+    flex-direction: column;
+    gap: $espaciado-xs;
+  }
+
+  &__label {
+    color: $color-texto-claro;
+    font-size: $tamano-pequeno;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__input {
+    background: rgba(2, 6, 23, 0.8);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: $radio-borde-md;
+    padding: 0.875rem $espaciado-sm;
+    color: $color-blanco;
+    font-size: $tamano-texto;
+    @include transicion(all);
+
+    &::placeholder {
+      color: rgba(160, 174, 192, 0.5);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primario;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    }
+  }
+
+  &__error {
+    background: rgba(255, 0, 85, 0.15);
+    border: 1px solid $color-peligro;
+    border-radius: $radio-borde-sm;
+    padding: $espaciado-xs $espaciado-sm;
+    color: $color-peligro;
+    font-size: $tamano-pequeno;
+    text-align: center;
+  }
+
+  &__boton {
+    @include boton-base;
+    background: linear-gradient(135deg, $color-primario, $color-secundario);
+    color: $color-fondo-oscuro;
+    font-size: 1.1rem;
+    padding: $espaciado-sm;
+    @include transicion(all);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    &:hover:not(:disabled) {
+      box-shadow: $glow-cyan;
+      transform: translateY(-2px);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

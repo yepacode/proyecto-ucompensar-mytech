@@ -1,0 +1,183 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/mixins';
+
+.admin {
+  display: flex;
+  min-height: 100vh;
+  background: $color-fondo-oscuro;
+
+  // ===== SIDEBAR =====
+  &__sidebar {
+    width: 260px;
+    background: rgba(15, 23, 42, 0.95);
+    border-right: 1px solid rgba(0, 240, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: $z-dropdown;
+    transform: translateX(-100%);
+    @include transicion(transform);
+
+    @include responsive($breakpoint-lg) {
+      transform: translateX(0);
+      position: relative;
+    }
+
+    &--abierto {
+      transform: translateX(0);
+    }
+  }
+
+  &__sidebar-header {
+    padding: $espaciado-lg;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: $espaciado-sm;
+  }
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, $color-primario, $color-secundario);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+
+    &-punto {
+      -webkit-text-fill-color: $color-acento;
+    }
+  }
+
+  &__badge {
+    background: rgba(0, 240, 255, 0.15);
+    color: $color-primario;
+    padding: 0.2rem 0.6rem;
+    border-radius: $radio-borde-full;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  // ===== NAV =====
+  &__nav {
+    flex: 1;
+    padding: $espaciado-sm;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    gap: $espaciado-sm;
+    padding: 0.75rem $espaciado-sm;
+    color: $color-texto-claro;
+    text-decoration: none;
+    border-radius: $radio-borde-md;
+    @include transicion(all);
+    font-weight: 500;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: $tamano-texto;
+    width: 100%;
+    text-align: left;
+
+    &:hover {
+      background: rgba(0, 240, 255, 0.08);
+      color: $color-primario;
+    }
+
+    &--activo {
+      background: rgba(0, 240, 255, 0.12) !important;
+      color: $color-primario !important;
+      border-left: 3px solid $color-primario;
+    }
+
+    &--logout {
+      color: $color-peligro;
+
+      &:hover {
+        background: rgba(255, 0, 85, 0.1);
+        color: $color-peligro;
+      }
+    }
+  }
+
+  &__nav-icono {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+  }
+
+  &__sidebar-footer {
+    padding: $espaciado-sm;
+    border-top: 1px solid rgba(0, 240, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  // ===== OVERLAY =====
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: $z-dropdown - 1;
+
+    @include responsive($breakpoint-lg) {
+      display: none;
+    }
+  }
+
+  // ===== CONTENT =====
+  &__contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__topbar {
+    display: flex;
+    align-items: center;
+    gap: $espaciado-sm;
+    padding: $espaciado-sm $espaciado-lg;
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+
+    &-toggle {
+      background: none;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      color: $color-primario;
+      font-size: 1.3rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: $radio-borde-sm;
+      cursor: pointer;
+
+      @include responsive($breakpoint-lg) {
+        display: none;
+      }
+    }
+
+    &-titulo {
+      color: $color-blanco;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  &__pagina {
+    flex: 1;
+    padding: $espaciado-lg;
+    overflow-y: auto;
+  }
+}

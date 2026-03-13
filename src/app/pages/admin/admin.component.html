@@ -1,0 +1,45 @@
+<div class="admin">
+  <!-- Sidebar -->
+  <aside class="admin__sidebar" [class.admin__sidebar--abierto]="menuAbierto">
+    <div class="admin__sidebar-header">
+      <a routerLink="/" class="admin__logo">MyTech<span class="admin__logo-punto">.</span></a>
+      <span class="admin__badge">Admin</span>
+    </div>
+
+    <nav class="admin__nav">
+      <a *ngFor="let seccion of secciones"
+         [routerLink]="seccion.ruta"
+         routerLinkActive="admin__nav-link--activo"
+         class="admin__nav-link"
+         (click)="menuAbierto = false">
+        <span class="admin__nav-icono">{{ seccion.icono }}</span>
+        {{ seccion.nombre }}
+      </a>
+    </nav>
+
+    <div class="admin__sidebar-footer">
+      <a routerLink="/" class="admin__nav-link">
+        <span class="admin__nav-icono">🌐</span>
+        Ver Sitio
+      </a>
+      <button class="admin__nav-link admin__nav-link--logout" (click)="cerrarSesion()">
+        <span class="admin__nav-icono">🚪</span>
+        Cerrar Sesion
+      </button>
+    </div>
+  </aside>
+
+  <!-- Overlay mobile -->
+  <div class="admin__overlay" *ngIf="menuAbierto" (click)="menuAbierto = false"></div>
+
+  <!-- Content -->
+  <main class="admin__contenido">
+    <header class="admin__topbar">
+      <button class="admin__topbar-toggle" (click)="toggleMenu()">☰</button>
+      <h2 class="admin__topbar-titulo">Panel de Administracion</h2>
+    </header>
+    <div class="admin__pagina">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

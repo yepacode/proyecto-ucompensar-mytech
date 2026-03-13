@@ -12,7 +12,20 @@ export class TecnologiaService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerTecnologias(): Observable<RespuestaAPI> {
-    return this.http.get<RespuestaAPI>(this.apiUrl);
+  obtenerTecnologias(todos = false): Observable<RespuestaAPI> {
+    const url = todos ? `${this.apiUrl}?all` : this.apiUrl;
+    return this.http.get<RespuestaAPI>(url);
+  }
+
+  crearTecnologia(data: any): Observable<RespuestaAPI> {
+    return this.http.post<RespuestaAPI>(this.apiUrl, data);
+  }
+
+  actualizarTecnologia(id: number, data: any): Observable<RespuestaAPI> {
+    return this.http.put<RespuestaAPI>(`${this.apiUrl}/${id}`, data);
+  }
+
+  eliminarTecnologia(id: number): Observable<RespuestaAPI> {
+    return this.http.delete<RespuestaAPI>(`${this.apiUrl}/${id}`);
   }
 }

@@ -1,0 +1,85 @@
+<div class="crud">
+  <div class="crud__header">
+    <h2 class="crud__titulo">Servicios <span>({{ servicios.length }})</span></h2>
+    <button class="crud__btn-crear" (click)="abrirCrear()">+ Crear Servicio</button>
+  </div>
+
+  <div class="crud__mensaje" [ngClass]="{'crud__mensaje--exito': tipoMensaje==='exito', 'crud__mensaje--error': tipoMensaje==='error'}" *ngIf="mensaje">{{ mensaje }}</div>
+
+  <div class="crud__tabla-wrapper">
+    <table class="crud__tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Titulo</th>
+          <th>Icono</th>
+          <th>Estado</th>
+          <th>Orden</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of servicios">
+          <td>{{ item.id }}</td>
+          <td>{{ item.titulo }}</td>
+          <td>{{ item.icono }}</td>
+          <td><span class="crud__badge" [ngClass]="item.activo ? 'crud__badge--activo' : 'crud__badge--inactivo'">{{ item.activo ? 'Activo' : 'Inactivo' }}</span></td>
+          <td>{{ item.orden }}</td>
+          <td>
+            <div class="crud__acciones">
+              <button class="crud__btn-editar" (click)="abrirEditar(item)">Editar</button>
+              <button class="crud__btn-eliminar" (click)="eliminar(item)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="crud__vacio" *ngIf="servicios.length === 0">No hay servicios registrados</div>
+  </div>
+
+  <!-- Modal -->
+  <div class="crud__modal" *ngIf="mostrarModal">
+    <div class="crud__modal-overlay" (click)="mostrarModal = false"></div>
+    <div class="crud__modal-contenido">
+      <div class="crud__modal-header">
+        <h3 class="crud__modal-titulo">{{ editando ? 'Editar' : 'Crear' }} Servicio</h3>
+        <button class="crud__modal-cerrar" (click)="mostrarModal = false">&times;</button>
+      </div>
+      <form class="crud__form" (ngSubmit)="guardar()">
+        <div class="crud__campo">
+          <label class="crud__label">Titulo</label>
+          <input class="crud__input" [(ngModel)]="form.titulo" name="titulo" required placeholder="Nombre del servicio">
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">Descripcion</label>
+          <textarea class="crud__textarea" [(ngModel)]="form.descripcion" name="descripcion" placeholder="Descripcion del servicio"></textarea>
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">Caracteristicas (una por linea)</label>
+          <textarea class="crud__textarea" [(ngModel)]="caracteristicasTexto" name="caracteristicas" placeholder="Caracteristica 1&#10;Caracteristica 2&#10;Caracteristica 3"></textarea>
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">Icono (emoji o clase)</label>
+          <input class="crud__input" [(ngModel)]="form.icono" name="icono" placeholder="💡">
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">Color de fondo</label>
+          <input class="crud__input" type="color" [(ngModel)]="form.color_fondo" name="color_fondo">
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">Orden</label>
+          <input class="crud__input" type="number" [(ngModel)]="form.orden" name="orden">
+        </div>
+        <div class="crud__campo">
+          <label class="crud__label">
+            <input type="checkbox" [(ngModel)]="form.activo" name="activo"> Activo
+          </label>
+        </div>
+        <div class="crud__form-acciones">
+          <button type="button" class="crud__btn-cancelar" (click)="mostrarModal = false">Cancelar</button>
+          <button type="submit" class="crud__btn-guardar" [disabled]="cargando">{{ cargando ? 'Guardando...' : 'Guardar' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

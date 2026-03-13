@@ -36,8 +36,15 @@ export class ContactoService {
     return this.http.post<RespuestaAPI>(this.apiUrl, contacto, { headers });
   }
 
-  // Obtener todos los contactos (opcional, para admin)
   obtenerContactos(): Observable<RespuestaAPI> {
     return this.http.get<RespuestaAPI>(this.apiUrl);
+  }
+
+  actualizarContacto(id: number, data: any): Observable<RespuestaAPI> {
+    return this.http.put<RespuestaAPI>(`${this.apiUrl}/${id}`, data);
+  }
+
+  eliminarContacto(id: number): Observable<RespuestaAPI> {
+    return this.http.delete<RespuestaAPI>(`${this.apiUrl}/${id}`);
   }
 }

@@ -7,29 +7,29 @@ import { RespuestaAPI } from './contacto.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ServicioService {
-  private apiUrl = `${environment.apiUrl}/servicios`;
+export class CategoriaService {
+  private apiUrl = `${environment.apiUrl}/categorias`;
 
   constructor(private http: HttpClient) { }
 
-  obtenerServicios(todos = false): Observable<RespuestaAPI> {
+  obtenerCategorias(todos = false): Observable<RespuestaAPI> {
     const url = todos ? `${this.apiUrl}?all` : this.apiUrl;
     return this.http.get<RespuestaAPI>(url);
   }
 
-  obtenerServicio(id: number): Observable<RespuestaAPI> {
+  obtenerCategoria(id: number): Observable<RespuestaAPI> {
     return this.http.get<RespuestaAPI>(`${this.apiUrl}/${id}`);
   }
 
-  crearServicio(data: any): Observable<RespuestaAPI> {
+  crearCategoria(data: any): Observable<RespuestaAPI> {
     return this.http.post<RespuestaAPI>(this.apiUrl, data);
   }
 
-  actualizarServicio(id: number, data: any): Observable<RespuestaAPI> {
+  actualizarCategoria(id: number, data: any): Observable<RespuestaAPI> {
     return this.http.put<RespuestaAPI>(`${this.apiUrl}/${id}`, data);
   }
 
-  eliminarServicio(id: number): Observable<RespuestaAPI> {
+  eliminarCategoria(id: number): Observable<RespuestaAPI> {
     return this.http.delete<RespuestaAPI>(`${this.apiUrl}/${id}`);
   }
 }

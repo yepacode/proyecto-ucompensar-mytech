@@ -1,0 +1,39 @@
+<div class="crud">
+  <div class="crud__header">
+    <h2 class="crud__titulo">Contactos <span>({{ contactos.length }})</span></h2>
+  </div>
+
+  <div class="crud__mensaje" [ngClass]="{'crud__mensaje--exito': tipoMensaje==='exito', 'crud__mensaje--error': tipoMensaje==='error'}" *ngIf="mensaje">{{ mensaje }}</div>
+
+  <div class="crud__tabla-wrapper">
+    <table class="crud__tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Telefono</th>
+          <th>Mensaje</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of contactos">
+          <td>{{ item.id }}</td>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.telefono || '-' }}</td>
+          <td class="crud__truncar">{{ item.mensaje }}</td>
+          <td>{{ item.created_at | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <div class="crud__acciones">
+              <button class="crud__btn-eliminar" (click)="eliminar(item)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="crud__vacio" *ngIf="contactos.length === 0">No hay contactos registrados</div>
+  </div>
+</div>
